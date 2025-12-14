@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="Imagenes/11zon_cropped.png" type="image/png">
+<title>Planos de la Empresa</title>
+
+<style>
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: black;
+    overflow-x: hidden;
+    color: #eaeaea;
+}
+
+/* ===== FONDO Y LINTERNA ===== */
+#fondo {
+    position: fixed;
+    inset: 0;
+    background: url("Imagenes/Bambu.png") center/cover no-repeat;
+    z-index: 0;
+}
+
+#linterna {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 320px at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.95) 65%
+    );
+    z-index: 1;
+}
+
+/* ===== TITULO ===== */
+.titulo-neon {
+    position: relative;
+    z-index: 3;
+    margin: 50px 0 40px;
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 2px #00ff2a;
+    text-shadow:
+        0 0 10px rgba(0,255,42,0.6),
+        0 0 25px rgba(0,255,42,0.5),
+        0 0 40px rgba(0,255,42,0.4);
+}
+
+/* ===== CONTENEDOR ===== */
+.Planose {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 80px;
+}
+
+.contenedor-planos {
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+}
+
+/* ===== TARJETA ===== */
+.plano {
+    position: relative;
+    background: rgba(0,0,0,0.65);
+    padding: 18px;
+    border-radius: 18px;
+    perspective: 1000px;
+    box-shadow:
+        0 0 18px rgba(0,255,42,0.35),
+        0 0 35px rgba(0,255,42,0.25);
+    transition: box-shadow 0.25s ease;
+    transform-style: preserve-3d;
+}
+
+.plano:hover {
+    box-shadow:
+        0 0 25px rgba(0,255,42,0.6),
+        0 0 55px rgba(0,255,42,0.35);
+}
+
+/* ===== ETIQUETA FLOTANTE ===== */
+.tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(0,0,0,0.75);
+    color: #00ff2a;
+    padding: 6px 12px;
+    border-radius: 14px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0,255,42,0.6);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ===== INDICADOR ===== */
+.plano::after {
+    content: "App usada para los planos: Minecraft";
+    position: absolute;
+    bottom: 14px;
+    right: 16px;
+    font-size: 0.75rem;
+    color: #00ff2a;
+    opacity: 0.6;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+/* ===== IMAGEN ===== */
+.plano img {
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+    transition: transform 0.15s ease;
+    transform-style: preserve-3d;
+}
+
+/* ===== TEXTO ===== */
+.plano h3 {
+    margin: 15px 0 8px;
+    color: #9dffb0;
+}
+
+.plano p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #eaeaea;
+}
+.acciones-finales {
+    position: relative;
+    z-index: 3;
+    margin: 2px auto 80px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-neon {
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #00ff2a;
+    border: 2px solid #00ff2a;
+    background: rgba(0,0,0,0.6);
+    box-shadow:
+        0 0 12px rgba(0,255,42,0.5),
+        inset 0 0 10px rgba(0,255,42,0.25);
+    transition: all 0.25s ease;
+}
+
+.btn-neon:hover {
+    color: #000;
+    background: #00ff2a;
+    box-shadow:
+        0 0 25px rgba(0,255,42,0.9),
+        0 0 50px rgba(0,255,42,0.6);
+    transform: translateY(-3px);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="fondo"></div>
+<div id="linterna"></div>
+
+<h1 class="titulo-neon">Planos de la Empresa</h1>
+
+<section class="Planose">
+    <div class="contenedor-planos">
+
+        <div class="plano">
+            <span class="tag">OFICINAS</span>
+            <img src="Imagenes/2025-11-14_15.57.45.png">
+            <h3>Plano de oficinas</h3>
+            <p>
+                Edificio de dos pisos: parqueadero en el primer nivel y oficinas administrativas
+                en el segundo, incluyendo recursos humanos, software, marketing y contabilidad.
+            </p>
+        </div>
+
+        <div class="plano">
+            <span class="tag">ALTURA</span>
+            <img src="Imagenes/2025-11-14_16.04.32.png">
+            <h3>Plano en altura</h3>
+            <p>
+                Altura aproximada de 10 metros, con pisos de 4 metros y un grosor estructural
+                entre niveles de medio a un metro.
+            </p>
+        </div>
+
+        <div class="plano">
+            <span class="tag">PRODUCCIÓN</span>
+            <img src="Imagenes/2025-11-15_01.21.01.png">
+            <h3>Planta de producción</h3>
+            <p>
+                Área dividida en corte láser, pintura, lijado, ensamblaje y zona de recepción
+                y envíos para optimizar el flujo de trabajo.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+/* ===== LINTERNA ===== */
+const linterna = document.getElementById("linterna");
+
+window.addEventListener("mousemove", e => {
+    linterna.style.background = `
+        radial-gradient(
+            circle 340px at ${e.clientX}px ${e.clientY}px,
+            transparent 25%,
+            rgba(0,0,0,0.95) 65%
+        )
+    `;
+});
+
+/* ===== EFECTO 3D TARJETA ===== */
+document.querySelectorAll(".plano").forEach(card => {
+    card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateX = ((y / rect.height) - 0.5) * -10;
+        const rotateY = ((x / rect.width) - 0.5) * 10;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0) rotateY(0)";
+    });
+});
+
+</script>
+<div class="acciones-finales">
+    <a href="https://www.minecraft.net" target="_blank" class="btn-neon">
+        Crea tus propios planos en minecraft
+    </a>
+
+    <a href="https://youtu.be/WjoX_XeP_VE" target="_blank" class="btn-neon">
+        Ver recorrido interno
+    </a>
+</div>
+
+</body>
+</html>

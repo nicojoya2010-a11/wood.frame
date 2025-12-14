@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wood Bot</title>
+<link rel="icon" href="Imagenes/11zon_cropped.png" type="image/png">
+
+<style>
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== FONDO Y LINTERNA ===== */
+#fondo {
+    position: fixed;
+    inset: 0;
+    background: url("Imagenes/Bambu.png") center/cover no-repeat;
+    z-index: 0;
+}
+
+#linterna {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 300px at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.95) 65%
+    );
+    z-index: 1;
+}
+
+/* ===== BOT ===== */
+.bot-wrapper {
+    position: relative;
+    z-index: 3;
+    width: 420px;
+    background: rgba(0,0,0,0.75);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow:
+        0 0 20px rgba(0,255,42,0.35),
+        0 0 45px rgba(0,255,42,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== TITULO ===== */
+.bot-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    color: transparent;
+    -webkit-text-stroke: 2px #00ff2a;
+    text-shadow:
+        0 0 8px rgba(0,255,42,0.6),
+        0 0 20px rgba(0,255,42,0.5),
+        0 0 35px rgba(0,255,42,0.4);
+}
+
+/* ===== LOGO ===== */
+.bot-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0,255,42,0.5);
+}
+
+/* ===== CHAT ===== */
+.chat-box {
+    width: 100%;
+    height: 260px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 14px;
+    padding: 15px;
+    overflow-y: auto;
+    color: #eaeaea;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.msg {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.user {
+    text-align: right;
+    color: #9dffb0;
+}
+
+.bot {
+    text-align: left;
+    color: #ffffff;
+}
+
+/* ===== INPUT ===== */
+.chat-input {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #111;
+    color: white;
+}
+
+.chat-input button {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #00ff2a;
+    font-weight: bold;
+}
+
+/* ===== BOTONES LATERALES ===== */
+.side-buttons {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.neon-btn {
+    padding: 14px 18px;
+    background: transparent;
+    color: #00ff2a;
+    border: 2px solid #00ff2a;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+    box-shadow:
+        0 0 10px rgba(0,255,42,0.6),
+        0 0 25px rgba(0,255,42,0.4);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 8px rgba(0,255,42,0.4); }
+    50% { box-shadow: 0 0 25px rgba(0,255,42,0.9); }
+    100% { box-shadow: 0 0 8px rgba(0,255,42,0.4); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="fondo"></div>
+<div id="linterna"></div>
+
+<div class="bot-wrapper">
+    <div class="bot-title">WOOD BOT</div>
+    <img src="Imagenes/11zon_cropped.png" class="bot-logo">
+    <div class="chat-box" id="chat"></div>
+
+    <div class="chat-input">
+        <input type="text" id="input" placeholder="Escribe tu mensaje...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<!-- BOTONES -->
+<div class="side-buttons">
+    <button class="neon-btn" onclick="showDev()">Desarrollador</button>
+    <button class="neon-btn" onclick="showHelp()">¿Qué puede responder el Bot?</button>
+</div>
+
+<script>
+/* ===== LINTERNA ===== */
+const linterna = document.getElementById("linterna");
+window.addEventListener("mousemove", e => {
+    linterna.style.background = `
+        radial-gradient(
+            circle 320px at ${e.clientX}px ${e.clientY}px,
+            transparent 25%,
+            rgba(0,0,0,0.95) 65%
+        )`;
+});
+
+/* ===== CHAT ===== */
+const chat = document.getElementById("chat");
+const input = document.getElementById("input");
+
+function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage(text, "user");
+    input.value = "";
+    setTimeout(() => botReply(text.toLowerCase()), 400);
+}
+
+function addMessage(text, type, typing = false) {
+    const msg = document.createElement("div");
+    msg.className = `msg ${type}`;
+    chat.appendChild(msg);
+
+    if (typing) {
+        let i = 0;
+        const interval = setInterval(() => {
+            msg.textContent += text[i];
+            i++;
+            chat.scrollTop = chat.scrollHeight;
+            if (i >= text.length) clearInterval(interval);
+        }, 25);
+    } else {
+        msg.textContent = text;
+    }
+}
+
+function botReply(text) {
+    let respuesta = "No entendí eso, formula la pregunta de otra manera";
+
+    if (text.includes("hola","Hola")) respuesta = "Hola, Soy Wood Bot.¿En que te puedo ayudar?";
+    if (text.includes("mision","misión")) respuesta = "Nuestra misión es desarrollar marcos de lentes biodegradables en madera de bambú mediante corte láser, ofreciendo una alternativa sostenible al mercado óptico.";
+    if (text.includes("vision", "visión")) respuesta = "Nuestra visión es consolidarnos para el año 2030 como líderes en la fabricación de marcos ecológicos, posicionando el bambú como una solución funcional y sostenible.";
+    if (text.includes("objetivo", "objetivo general")) respuesta = "Nuestro objetivo general es diseñar marcos biodegradables elaborados con madera de bambú para ofrecer una alternativa ecológica al mercado óptico en 2027.";
+    if (text.includes("problema", "problematica", "planteamiento")) respuesta = "La alta demanda de lentes tras la pandemia ha incrementado la producción de marcos de plástico y titanio, los cuales se desechan rápidamente y generan grandes cantidades de residuos no biodegradables (EconoLentes Corporation, 2024). Cada año se tiran más de cuatro millones de gafas solo en Norteamérica, unas 250 toneladas de plástico (Waste Direct, 2025). El reciclaje actual es limitado y poco eficiente (Lahl & Zeschmar-Lahl, 2024), por lo que se necesitan materiales más sostenibles para reducir el impacto ambiental.";
+    if (text.includes("precio", "Precios", "costos")) respuesta = "Nuestros precios son:\n• Marco Clásico de Bambú: $45.000\n• Marco Personalizado: $55.000\n• Marco Minimalista: $40.000";
+    if (text.includes("Organigrama", "Jerarquia","Ceo","CEO")) respuesta = "La empresa está organizada con un Director General, Nicolás Joya, quien lidera las decisiones estratégicas. El consejo directivo está conformado por Daivier Cárdenas como Director de Marketing, responsable de la marca y las campañas; Nicolás Pineda como Director de Sistemas, encargado de la infraestructura tecnológica; y Alejandro Parra como Director de Finanzas, quien gestiona la salud económica y los riesgos de la empresa. Esta estructura permite coordinar operaciones, tecnología, marketing y finanzas de manera eficiente.";
+    if (text.includes("Como", "comprar","productos")) respuesta = "Al dar click en comprar productos en la seccion de diseños, te dirigira a whastapp directamente al chat encargado de venmtas, ahi podras realizar tus pedidos";
+    if (text.includes("Preguntas", "Frecuentes")) respuesta = "Nuestro producto es un marco fabricado con lámina de madera de bambú, elaborado mediante corte láser de alta precisión, lo que garantiza acabados limpios, detalles exactos y un diseño uniforme. Entre las preguntas más frecuentes se encuentran la durabilidad del material, la cual es alta gracias a la resistencia natural del bambú, se estima que tiene una duracion de 2 años; el uso del producto, ideal para decoración, exhibición o personalización; y el proceso de fabricación, que combina tecnología láser con un material ecológico y sostenible. También se consulta sobre la personalización de diseños y grabados, opciones que pueden adaptarse según los deseos del cliente.";
+    if (text.includes("grabados","personalizar", "personalizado")) respuesta = "Personalizar el grabado significa que con corte laser se puede hacer un diseño especia en las patillas, grabar un normbre o simbolo, preferiblemente en la parte exteriror de las patillas";
+    addMessage(respuesta, "bot", true);
+}
+
+/* ===== BOTONES ===== */
+function showDev() {
+    addMessage("Desarrollado por Nicolas Joya y Wood frame © Todos los derechos reservados.", "bot", true);
+}
+
+function showHelp() {
+    addMessage("Te puedo ayudar con lo relacionado a: Como comprar nuestros producto, nuestra mision, vision, objetivo general y planteamiento del problema, la jerarquia en la empresa, valor y diseños de marcos y preguntas frecuentes", "bot", true);
+}
+
+input.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendMessage();
+});
+</script>
+
+</body>
+</html>

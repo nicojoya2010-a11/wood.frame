@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros</title>
+<link rel="icon" href="Imagenes/11zon_cropped.png" type="image/png">
+
+<style>
+/* ========== BASE ========== */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: black;
+    overflow-x: hidden;
+}
+
+/* ========== FONDO ========== */
+#fondo {
+    position: fixed;
+    inset: 0;
+    background: url("Imagenes/Bambu.png") no-repeat center/cover;
+    z-index: 0;
+}
+
+/* ========== LINTERNA (SOLO FONDO) ========== */
+#linterna {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 350px at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.95) 65%
+    );
+    z-index: 1;
+}
+
+/* ========== TITULO NEÓN ========== */
+.titulo-neon {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+
+    margin-top: 40px;
+    margin-bottom: 20px;
+
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+
+    color: transparent;
+    -webkit-text-stroke: 2px #00ff2a;
+
+    text-shadow:
+        0 0 8px rgba(0,255,42,0.6),
+        0 0 18px rgba(0,255,42,0.5),
+        0 0 35px rgba(0,255,42,0.4);
+
+    pointer-events: none;
+}
+
+
+/* ========== CONTENEDOR GENERAL ========== */
+.contenido {
+    position: relative;
+    z-index: 2;
+    padding: 40px 60px 60px;
+    display: grid;
+    grid-template-columns: 1.9fr 1fr; /* menos ancha la izquierda */
+    gap: 30px;
+    box-sizing: border-box;
+}
+
+/* ========== COLUMNA IZQUIERDA ========== */
+.col-izq {
+    background: rgba(0, 0, 0, 0.65);
+    padding: 35px;
+    border-radius: 16px;
+    color: #eaeaea;
+    line-height: 1.7;
+    min-height: 65vh;
+
+    box-shadow:
+        0 0 15px rgba(0,255,42,0.35),
+        0 0 35px rgba(0,255,42,0.25);
+}
+
+/* ========== COLUMNA DERECHA ========== */
+.col-der {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.col-der .bloque {
+    background: rgba(0, 0, 0, 0.65);
+    padding: 15px;
+    border-radius: 16px;
+    color: #eaeaea;
+
+    box-shadow:
+        0 0 12px rgba(0,255,42,0.3),
+        0 0 28px rgba(0,255,42,0.2);
+}
+
+
+/* ========== BLOQUES DERECHA ========== */
+.bloque {
+    background: rgba(0,0,0,0.65);
+    padding: 22px;
+    border-radius: 16px;
+    color: #eaeaea;
+    min-height: 18vh; /* un poco más bajos */
+}
+
+/* ========== TITULOS INTERNOS ========== */
+h1, h2 {
+    margin-top: 0;
+
+    color: transparent;
+    -webkit-text-stroke: 1.5px #00ff2a;
+
+    text-shadow:
+        0 0 6px rgba(0,255,42,0.5),
+        0 0 14px rgba(0,255,42,0.35);
+
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+    .contenido {
+        grid-template-columns: 1fr;
+    }
+
+    .col-izq,
+    .bloque {
+        min-height: auto;
+    }
+
+    .titulo-neon {
+        font-size: 2.4rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FONDO + LINTERNA -->
+<div id="fondo"></div>
+<div id="linterna"></div>
+
+<!-- TITULO -->
+<h1 class="titulo-neon">NOSOTROS</h1>
+
+<!-- CONTENIDO -->
+<main class="contenido">
+
+    <!-- COLUMNA IZQUIERDA -->
+    <section class="col-izq">
+        <h2>Planteamiento del problema</h2>
+        <p>
+            <p>Debido a la pandemia y al uso excesivo del tiempo frente a las pantallas, se ha generado una creciente demanda de lentes ópticos, lo que ha impulsado la producción masiva de marcos fabricados principalmente con materiales como el plástico y el titanio. De acuerdo con EconoLentes Corporation (2024), estos productos tienen una vida útil promedio de dos años, lo que provoca una alta rotación y reemplazo, ya sea por daños menores o por motivos estéticos.
+</p>
+        <p>Esta dinámica de consumo rápido contribuye significativamente a la acumulación de residuos no biodegradables. Muchos de estos marcos desechados terminan en el medio ambiente, generando efectos negativos como la intoxicación de animales por ingestión o la obstrucción del crecimiento vegetal en zonas afectadas. Aunque existen campañas de reciclaje y concientización, la cantidad de residuos plásticos generados continúa aumentando y supera la capacidad de gestión de muchas comunidades.
+</p>
+            <p>Los residuos plásticos provenientes de las gafas representan una preocupación creciente a nivel mundial. Solo en Norteamérica se desechan anualmente más de cuatro millones de pares de gafas, lo que equivale a unas 250 toneladas métricas de residuos plásticos que terminan en vertederos cada año (Waste Direct, 2025).
+            </p>
+               <p> Según Lahl y Zeschmar-Lahl (2024), los métodos actuales de reciclaje de plásticos presentan limitaciones técnicas y financieras que reducen su eficacia y sostenibilidad. Frente a esta problemática, se hace necesario investigar alternativas sostenibles, como el uso de materiales ecológicos en la fabricación de marcos de lentes, que contribuyan a mitigar el impacto ambiental sin sacrificar la calidad ni la funcionalidad del producto.
+        </p>
+    </section>
+
+    <!-- COLUMNA DERECHA -->
+    <aside class="col-der">
+
+        <div class="bloque">
+            <h2>Misión</h2>
+            <p>
+            Desarrollar marcos de lentes biodegradables elaborados en madera de bambú, utilizando tecnologías de corte láser para asegurar precisión, calidad y estética, ofreciendo al mercado óptico una alternativa sostenible que reduzca la generación de residuos plásticos y contribuya a la protección del medio ambiente.
+        </p>
+        </div>
+
+        <div class="bloque">
+            <h2>Visión</h2>
+             <p>
+           Consolidarnos para el año 2030 como una referencia en la fabricación de marcos de lentes ecológicos, liderando la transición hacia materiales responsables y posicionando al bambú como una solución viable, funcional y estéticamente superior dentro del mercado óptico nacional.
+        </p>
+        </div>
+
+        <div class="bloque">
+            <h2>Objetivo General</h2>
+             <p>
+            Diseñar marcos de lentes elaborados con madera de bambú biodegradable, aplicando corte láser para garantizar mayor precisión en el diseño y una mejora en la estética, con el fin de ofrecer una alternativa ecológica dentro del mercado óptico para el año 2027
+        </p>
+        </div>
+
+    </aside>
+
+</main>
+
+<script>
+/* ========== EFECTO LINTERNA ========== */
+const linterna = document.getElementById("linterna");
+
+window.addEventListener("mousemove", e => {
+    linterna.style.background = `
+        radial-gradient(
+            circle 380px at ${e.clientX}px ${e.clientY}px,
+            transparent 25%,
+            rgba(0,0,0,0.95) 65%
+        )
+    `;
+});
+</script>
+
+</body>
+</html>

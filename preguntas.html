@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preguntas Frecuentes</title>
+<link rel="icon" href="Imagenes/11zon_cropped.png" type="image/png">
+
+<style>
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: black;
+    color: #eaeaea;
+    overflow-x: hidden;
+}
+
+/* ===== FONDO Y LINTERNA ===== */
+#fondo {
+    position: fixed;
+    inset: 0;
+    background: url("Imagenes/Bambu.png") center/cover no-repeat;
+    z-index: 0;
+}
+
+#linterna {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 320px at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.95) 65%
+    );
+    z-index: 1;
+}
+
+/* ===== TITULO ===== */
+.titulo-neon {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 2px #00ff2a;
+    text-shadow:
+        0 0 10px rgba(0,255,42,0.6),
+        0 0 25px rgba(0,255,42,0.5),
+        0 0 40px rgba(0,255,42,0.4);
+}
+
+/* ===== CONTENEDOR CENTRAL ===== */
+.faq-wrapper {
+    position: relative;
+    z-index: 3;
+    width: 85%;
+    max-width: 900px;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+/* ===== TARJETA ===== */
+.card {
+    background: rgba(0,0,0,0.65);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow:
+        0 0 18px rgba(0,255,42,0.35),
+        0 0 35px rgba(0,255,42,0.25);
+        
+}
+
+/* ===== LISTA FAQ ===== */
+.card ul {
+    padding-left: 20px;
+}
+
+.card li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* ===== BOTON WHATSAPP ===== */
+.contacto {
+    text-align: center;
+    padding: 30px;
+    max-width: 320px;   /* más ancho */
+    margin: 0 auto 40px;
+}
+
+.contacto p {
+    color: #9dffb0;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.btn-whatsapp {
+   
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #00ff2a;
+    border: 2px solid #00ff2a;
+    background: rgba(0,0,0,0.6);
+    box-shadow:
+        0 0 12px rgba(0,255,42,0.5),
+        inset 0 0 10px rgba(0,255,42,0.25);
+    transition: all 0.25s ease;
+    margin-top: 200px;
+}
+
+
+.btn-whatsapp:hover {
+     color: #000;
+    background: #00ff2a;
+    box-shadow:
+        0 0 25px rgba(0,255,42,0.9),
+        0 0 50px rgba(0,255,42,0.6);
+    transform: translateY(-3px);
+}
+
+/* ===== MONEDAS ===== */
+.coin {
+    position: fixed;
+    width: 110px;
+    height: 110px;
+    perspective: 800px;
+    z-index: 4;
+}
+
+.coin-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    cursor: pointer;
+}
+
+.coin.flipped .coin-inner {
+    transform: rotateY(180deg);
+}
+
+.coin-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.75rem;
+    box-shadow:
+        0 0 15px rgba(0,255,42,0.6),
+        0 0 30px rgba(0,255,42,0.4);
+}
+
+.coin-front {
+    background: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(0, 255, 0.4) 70%);
+    color: #9dffb0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.coin-back {
+   background: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(0, 255, 0.4) 70%);
+    color: #9dffb0;
+    font-size: 1rem;
+    transform: rotateY(180deg);
+
+}
+
+/* ===== POSICIONES ===== */
+.left1 { left: 40px; top: 220px; }
+.left2 { left: 40px; top: 360px; }
+.left3 { left: 40px; top: 500px; }
+
+.right1 { right: 40px; top: 220px; }
+.right2 { right: 40px; top: 360px; }
+.right3 { right: 40px; top: 500px; }
+</style>
+</head>
+
+<body>
+
+<div id="fondo"></div>
+<div id="linterna"></div>
+
+<h1 class="titulo-neon">Preguntas Frecuentes</h1>
+
+<!-- ===== MONEDAS ===== -->
+<div class="coin left1"><div class="coin-inner"><div class="coin-face coin-front">¿Material?</div><div class="coin-face coin-back">Madera de Bambu y linaza</div></div></div>
+<div class="coin left2"><div class="coin-inner"><div class="coin-face coin-front">¿Se pudre?</div><div class="coin-face coin-back">Esta sellado para evitarlo</div></div></div>
+<div class="coin left3"><div class="coin-inner"><div class="coin-face coin-front">¿Personalizar?</div><div class="coin-face coin-back">Sí, grabados (nombres)</div></div></div>
+
+<div class="coin right1"><div class="coin-inner"><div class="coin-face coin-front">¿vida util?</div><div class="coin-face coin-back">1 a 2 años</div></div></div>
+<div class="coin right2"><div class="coin-inner"><div class="coin-face coin-front">¿Sede?</div><div class="coin-face coin-back">Usme, Bogota</div></div></div>
+<div class="coin right3"><div class="coin-inner"><div class="coin-face coin-front">¿Ecológico?</div><div class="coin-face coin-back">100% sostenible</div></div></div>
+
+<section class="faq-wrapper">
+
+    <div class="card">
+        <ul>
+            <li><h4>¿Que evita que la madera se pudra?</h4></li>
+            <p>Se usa aceite de linaza como sellador, esto evita que el agua se filtre y prolonga el tiempo de vida de la madera, evitando que se pudra</p>
+            <li><h4>¿Como hacen los grabados en la patilla?</h4></li>
+            <p>Se ajusta la temperatura del corte laser para que no perfore la madera completamente, asi logrando que solo quede la marca</p>
+            <li><h4>¿Que le diseño le puedo poner a las patillas?</h4></li>
+            <p>Preferiblemente se aconsejan nombres, o diseños sencillos, ya que el espacio para trabajar es demasiado pequeño para diseños complejos</p>
+        </ul>
+    </div>
+
+    <div class="card contacto">
+        <p>¿No encontraste tu respuesta?</p>
+        <a
+            class="btn-whatsapp"
+            href="https://wa.me/573204005807?text=Hola,%20quiero%20información%20sobre%20los%20marcos%20de%20bambú%20cortados%20con%20láser."
+            target="_blank"
+        >
+            Atención personalizada
+        </a>
+    </div>
+
+</section>
+
+<script>
+/* ===== LINTERNA ===== */
+const linterna = document.getElementById("linterna");
+window.addEventListener("mousemove", e => {
+    linterna.style.background = `
+        radial-gradient(
+            circle 340px at ${e.clientX}px ${e.clientY}px,
+            transparent 25%,
+            rgba(0,0,0,0.95) 65%
+        )
+    `;
+});
+
+/* ===== FLIP MONEDAS ===== */
+document.querySelectorAll(".coin").forEach(coin => {
+    coin.addEventListener("click", () => {
+        coin.classList.toggle("flipped");
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseños de Marcos</title>
+<link rel="icon" href="Imagenes/11zon_cropped.png" type="image/png">
+
+<style>
+/* ================= BASE ================= */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: black;
+    overflow-x: hidden;
+
+}
+
+/* ================= FONDO ================= */
+#fondo {
+    position: fixed;
+    inset: 0;
+    background: url("Imagenes/Bambu.png") no-repeat center/cover;
+    z-index: 0;
+}
+
+/* ================= LINTERNA ================= */
+#linterna {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 300px at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.95) 65%
+    );
+    z-index: 1;
+}
+
+/* ================= CONTENIDO ================= */
+.contenido {
+    position: relative;
+    z-index: 2;
+    padding: 60px 80px;
+}
+
+/* ================= TITULO ================= */
+.titulo-neon {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: transparent;
+    -webkit-text-stroke: 2px #00ff2a;
+    text-shadow:
+        0 0 8px rgba(0,255,42,0.6),
+        0 0 18px rgba(0,255,42,0.5),
+        0 0 35px rgba(0,255,42,0.4);
+}
+
+/* ================= PRODUCTOS (FILA SUPERIOR) ================= */
+.productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.card {
+    background: #000000;
+    width: 300px;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,255,42,0.4);
+    text-align: center;
+    transition: 0.2s;
+    color: #ffffff;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card p {
+    font-size: 0.95rem;
+    margin: 8px 0;
+}
+
+.precio {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3a803d;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #2d652f;
+}
+
+/* ================= CUADROS INFERIORES ================= */
+.grid-texto {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    gap: 25px;
+    font-size: 1.2rem;
+
+    justify-content: center; /* ← CLAVE */
+}
+
+
+
+
+.cuadro {
+    background: rgba(0,0,0,0.65);
+    border-radius: 16px;
+    padding: 25px;
+    min-height: 200px;
+    color: #eaeaea;
+    box-shadow:
+        0 0 15px rgba(0,255,42,0.35),
+        0 0 35px rgba(0,255,42,0.25);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1000px) {
+    .grid-texto {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="fondo"></div>
+<div id="linterna"></div>
+
+<main class="contenido">
+
+    <h1 class="titulo-neon">DISEÑOS DE MARCOS</h1>
+
+    <!-- FILA SUPERIOR -->
+    <section class="productos">
+
+        <div class="card">
+            <img src="Imagenes/images (1).jpeg">
+            <h3>Marco Clásico</h3>
+            <p>Diseño clasio de marcos de gafas.</p>
+            <div class="precio">$45.000</div>
+            <a class="btn" href="https://wa.me/573204005807?text=Hola,%20me%20interesa%20el%20Marco%20Clásico%20de%20Bambú" target="_blank">
+                Comprar
+            </a>
+        </div>
+
+        <div class="card">
+            <img src="Imagenes/images.jpeg">
+            <h3>Marco Personalizado</h3>
+            <p>Marco clasico con grabado personalizado en la parte exterior de las patillas</p>
+            <div class="precio">$55.000</div>
+            <a class="btn" href="https://wa.me/573204005807?text=Hola,%20me%20interesa%20el%20Marco%20Personalizado%20de%20Bambú" target="_blank">
+                Comprar
+            </a>
+        </div>
+
+        <div class="card">
+            <img src="Imagenes/htb1_39gulmwbunksndvq6asapxaw.jpg">
+            <h3>Marco Minimalista</h3>
+            <p>Marco con color neutro, sin grabados ni logos</p>
+            <div class="precio">$40.000</div>
+            <a class="btn" href="https://wa.me/573204005807?text=Hola,%20me%20interesa%20el%20Marco%20Minimalista%20de%20Bambú" target="_blank">
+                Comprar
+            </a>
+        </div>
+
+    </section>
+
+    <!-- FILA INFERIOR -->
+    <section class="grid-texto">
+        <div class="cuadro"><p>¿Por que deberias comprar nuestros marcos?</p><p>Nuestros marcos de gafas de madera de bambú combinan ligereza, resistencia y un diseño distintivo que no pasa desapercibido.</p><p>Son cómodos para el uso diario, firmes en su estructura y con un acabado natural que aporta estilo sin exagerar.</p><p>Cada marco está pensado para quienes buscan algo diferente a lo común, con personalidad y presencia, pero sin sacrificar comodidad ni durabilidad. En pocas palabras: se ven bien, se sienten bien y duran.</p></div>
+        <div class="cuadro"><p>Ventajas economicas y ambientales</p><p>Comprar nuestros marcos de gafas de bambú es una decisión inteligente tanto en lo económico como en lo ambiental.</p><p>Su alta durabilidad y resistencia reducen la necesidad de reemplazos frecuentes, lo que se traduce en un ahorro real a largo plazo.</p><p>Mientras que su ligereza disminuye costos de transporte y manejo. Desde el punto de vista ambiental, el bambú es un material de rápido crecimiento y menor impacto en comparación con alternativas tradicionales, ya que requiere menos recursos y energía para su producción,</p></div>
+    </section>
+
+</main>
+
+<script>
+const linterna = document.getElementById("linterna");
+window.addEventListener("mousemove", e => {
+    linterna.style.background = `
+        radial-gradient(
+            circle 350px at ${e.clientX}px ${e.clientY}px,
+            transparent 25%,
+            rgba(0,0,0,0.95) 65%
+        )
+    `;
+});
+</script>
+
+</body>
+</html>

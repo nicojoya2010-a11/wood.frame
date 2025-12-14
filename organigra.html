@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organigrama de la empresa</title>
+    <link rel="icon" href="Imagenes/11zon_cropped.png" type="image/png">
+</head>
+<style>
+   body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== FONDO Y LINTERNA ===== */
+#fondo {
+    position: fixed;
+    inset: 0;
+    background: url("Imagenes/Bambu.png") no-repeat center/cover;
+    z-index: 0;
+}
+
+#linterna {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 300px at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.95) 65%
+    );
+    z-index: 1;
+}
+
+/* ===== TITULO ===== */
+.titulo-neon {
+    margin: 40px 0 30px;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: transparent;
+    -webkit-text-stroke: 2px #00ff2a;
+    text-shadow:
+        0 0 8px rgba(0,255,42,0.6),
+        0 0 18px rgba(0,255,42,0.5),
+        0 0 35px rgba(0,255,42,0.4);
+    z-index: 3;
+}
+
+/* ===== ORGANIGRAMA ===== */
+.organigrama {
+    position: relative;
+    z-index: 3; /* por encima de la linterna */
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+/* ===== FILAS ===== */
+.fila {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.fila.derecha {
+    flex-direction: row-reverse;
+}
+
+/* ===== MONEDA ===== */
+.coin-wrapper {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.coin-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 50%;
+}
+
+.coin-wrapper.flipped .coin-inner {
+    transform: rotateY(180deg);
+}
+
+.coin-front,
+.coin-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.coin-back {
+    transform: rotateY(180deg);
+}
+
+.coin-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+    display: none;
+    background: rgba(0,0,0,0.8);
+    color: #eaeaea;
+    padding: 18px;
+    width: 660px;
+    border-radius: 14px;
+    box-shadow:
+        0 0 15px rgba(0,255,42,0.4),
+        0 0 30px rgba(0,255,42,0.25);
+}
+
+.info-box.active {
+    display: block;
+}
+
+</style>
+<body>
+    
+    
+    <div id="fondo"></div>
+<div id="linterna"></div>
+
+<h1 class="titulo-neon">Organigrama</h1>
+
+<section class="organigrama">
+
+    <!-- IZQUIERDA -->
+    <div class="fila izquierda">
+        <div class="coin-wrapper" onclick="flipCoin(this,'info1')">
+            <div class="coin-inner">
+                <div class="coin-front">
+                    <img src="Imagenes/11zon_cropped.png" class="coin-img">
+                </div>
+                <div class="coin-back">
+                    <img src="Imagenes/Bambu.png" class="coin-img">
+                </div>
+            </div>
+        </div>
+        <div class="info-box" id="info1">
+            <h3>Director General (CEO)</h3>
+                <p>Máxima autoridad responsable de las decisiones estratégicas y administración.</p>
+                <h4>Integrantes del consejo Directivo</h4>
+        <p>Director de Marketing: Lidera la estrategia de marketing y las campañas publicitarias.</p>
+        <p>Director de sistemas: Gestiona los sistemas de información y la seguridad de los datos.</p>
+        <p>Director de operaciones: Ejecuta la estrategia definida por el CEO en los procesos</p>
+        <p>Director de finanzas: Es el ejecutivo responsable de la salud financiera de una empresa</p>
+        </div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="fila derecha">
+        <div class="coin-wrapper" onclick="flipCoin(this,'info2')">
+            <div class="coin-inner">
+                <div class="coin-front">
+                    <img src="Imagenes/11zon_cropped.png" class="coin-img">
+                </div>
+                <div class="coin-back">
+                    <img src="Imagenes/Bambu.png" class="coin-img">
+                </div>
+            </div>
+        </div>
+        <div class="info-box" id="info2">
+            <h3>Director de marketing</h3>
+                <p>Desarrolla y ejecuta la estrategia de marketing, analiza el mercado y la competencia</p>
+                <h4>Departamentos</h4>
+        <p>Marketing Digital: Se enfoca en la Publicidad, redes sociales y posicionamiento en el mercado.</p>
+        <p>Relaciones Publicas: Se encarga de la imagen de la marca y las relaciones con los medios</p>
+        <p>Ventas: Se enfoca en la interacción directa con los clientes para presentar el producto</p>
+        </div>
+    </div>
+
+    <!-- IZQUIERDA -->
+    <div class="fila izquierda">
+        <div class="coin-wrapper" onclick="flipCoin(this,'info3')">
+            <div class="coin-inner">
+                <div class="coin-front">
+                    <img src="Imagenes/11zon_cropped.png" class="coin-img">
+                </div>
+                <div class="coin-back">
+                    <img src="Imagenes/Bambu.png" class="coin-img">
+                </div>
+            </div>
+        </div>
+        <div class="info-box" id="info3">
+            <h3>Director de sistemas</h3>
+                <p>Gestiona la infraestructura y seguridad tecnológica</p>
+                <h4>Departamentos</h4>
+        <p>Soporte tecnico: Se encarga de resolver problemas de hardware y software para los empleados </p>
+        <p>Diseño Web: Diseña, implementa y administra la pagina de la empresa</p>
+        <p>Seguridad informatica: Protege los sistemas y los datos contra amenazas cibernéticas</p>
+        </div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="fila derecha">
+        <div class="coin-wrapper" onclick="flipCoin(this,'info4')">
+            <div class="coin-inner">
+                <div class="coin-front">
+                    <img src="Imagenes/11zon_cropped.png" class="coin-img">
+                </div>
+                <div class="coin-back">
+                    <img src="Imagenes/Bambu.png" class="coin-img">
+                </div>
+            </div>
+        </div>
+        <div class="info-box" id="info4">
+            <h3>Director de finanzas</h3>
+                <p> Se encarga de la planificación y estrategia financiera</p>
+                 <h4>Departamentos</h4>
+        <p>Fiscal: Se encarga de calcular, gestionar y pagar todos los impuestos (como el IVA)</p>
+        <p>Estado financieros: Elabora los informes como el balance general, presentando la situación financiera.</p>
+        <p>Recursos humanos: Gestiona las relaciones internas de la empresa y los seguros sociales. </p>
+        </div>
+    </div>
+
+</section>
+
+
+    <script>
+    const linterna = document.getElementById("linterna");
+
+window.addEventListener("mousemove", e => {
+    linterna.style.background = `
+        radial-gradient(
+            circle 350px at ${e.clientX}px ${e.clientY}px,
+            transparent 25%,
+            rgba(0,0,0,0.95) 65%
+        )
+    `;
+});// Variable para llevar el seguimiento de la moneda volteada y su info-box
+let activeCoin = null;
+let activeInfoBox = null;
+
+function flipCoin(coinWrapper, infoBoxId) {
+    const infoBox = document.getElementById(infoBoxId);
+
+    // Si hay una moneda activa y no es la misma, la volteamos hacia atrás y ocultamos su info
+    if (activeCoin && activeCoin !== coinWrapper) {
+        activeCoin.classList.remove('flipped');
+        activeInfoBox.classList.remove('active');
+    }
+
+    // Voltea la moneda actual
+    coinWrapper.classList.toggle('flipped');
+    
+    // Muestra u oculta el cuadro de información correspondiente
+    if (coinWrapper.classList.contains('flipped')) {
+        infoBox.classList.add('active');
+        activeCoin = coinWrapper;
+        activeInfoBox = infoBox;
+    } else {
+        infoBox.classList.remove('active');
+        activeCoin = null;
+        activeInfoBox = null;
+    }
+}
+</script>
+</body>
+</html>
